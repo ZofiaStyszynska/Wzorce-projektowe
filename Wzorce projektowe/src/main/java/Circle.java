@@ -1,7 +1,19 @@
-public class Circle implements Figure {
+public class Circle implements SuperFigure {
 
     private final double PI = Math.PI;
     private double radius;
+    private Colour colour;
+    private double x;
+    private double y;
+
+
+
+    public Circle(double radius, Colour colour, double x, double y) {
+        this.radius = radius;
+        this.colour = colour;
+        this.x = x;
+        this.y = y;
+    }
 
     public Circle(double radius) {
         this.radius = radius;
@@ -17,7 +29,25 @@ public class Circle implements Figure {
          return PI * radius * radius;
     }
 
-    public double getRadius() {
-        return radius;
+    @Override
+    public Colour addColour(Colour colour) {
+       return this.colour;
+
+    }
+
+    @Override
+    public void putInPosition(double x, double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    @Override
+    public double getX() {
+        return x;
+    }
+
+    @Override
+    public double getY() {
+        return y;
     }
 }
