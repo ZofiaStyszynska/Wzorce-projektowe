@@ -1,19 +1,22 @@
-public class Square implements SuperFigure{
+import lombok.Getter;
+
+import java.io.BufferedWriter;
+@Getter
+public class Square extends AbstractSuperFigure {
 
     private double side;
-    private Colour colour;
-    private double x;
-    private double y;
 
-    public Square(double side, Colour colour, double x, double y) {
+
+    private Square(Builder builder) {
         this.side = side;
-        this.colour = colour;
-        this.x = x;
-        this.y = y;
+
     }
 
     public Square(double side) {
         this.side = side;
+    }
+
+    public Square() {
     }
 
     @Override
@@ -26,25 +29,41 @@ public class Square implements SuperFigure{
         return side * side;
     }
 
-    @Override
-    public Colour addColour(Colour colour) {
-        return this.colour;
-    }
 
-    @Override
-    public void putInPosition(double x, double y) {
-        this.x = x;
-        this.y = y;
 
-    }
-    @Override
-    public double getX() {
-        return x;
-    }
+    public static class Builder {
 
-    @Override
-    public double getY() {
-        return y;
-    }
+        private Square instance;
+        public Builder(){
+            instance = new Square();
+        }
 
+        Square build() {
+            if (instance.side<=0){
+                throw new IllegalStateException("Square side must be longer than 0");
+            }
+            return instance;
+        }
+
+        Builder withSide(double side) {
+            instance.side=side;
+
+
+            return this;
+        }
+
+        Builder withColour(Colour colour) {
+            instance.colour = colour;
+
+            return this;
+        }
+
+        Builder withCoordinates(double x, double y) {
+            instance.putInPosition(x,y);
+
+            return this;
+
+        }
+    }
 }
+

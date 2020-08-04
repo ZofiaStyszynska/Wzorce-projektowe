@@ -24,6 +24,14 @@ public class ValuesFromUser {
         Square square = new Square(sideFromUser);
         figures[2] = square;
 
+        System.out.println("Podaj długości przyprostoktnych: ");
+        figures[3] = new Triangle.Builder()
+                .withSideA(scanner.nextDouble())
+                .withsideB(scanner.nextDouble())
+                .withColour(Colourable.Colour.RED)
+                .withCoordinates(12,18)
+                .build();
+
         for (Figure figure : figures) {
             //System.out.println(figure.getClass().toString()+ " Pole: " + figure.countArea() + ", obwód: " + figure.countPerimeter() );
             System.out.println(figure.prepareDescription());
